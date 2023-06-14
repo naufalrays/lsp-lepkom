@@ -17,3 +17,15 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/

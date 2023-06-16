@@ -89,6 +89,15 @@ class AdminArticleController extends Controller
      */
     public function destroy(string $id)
     {
+        // Find Article with id
+        $data = Article::find($id);
+        if (file_exists('images/article/' . $data->image)) {
+            // Remove local images
+            @unlink('images/article/' . $data->image);
+        }
+        $data->delete();
+        FacadesAlert::success('Success', 'Successfully deleted data');
+        return back();
     }
 
     public function report()

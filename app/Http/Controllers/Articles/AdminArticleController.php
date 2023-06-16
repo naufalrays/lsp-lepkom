@@ -8,6 +8,7 @@ use App\Models\Article;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Articles\Auth;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class AdminArticleController extends Controller
@@ -17,7 +18,9 @@ class AdminArticleController extends Controller
      */
     public function index()
     {
+        // Get all articles table data
         $dataArticles = Article::all();
+        // Return view and passing data articles to view
         return view('admin.article.index', ['dataArticles' => $dataArticles]);
     }
 
@@ -26,6 +29,7 @@ class AdminArticleController extends Controller
      */
     public function create()
     {
+        // Open page create article
         return view('admin.article.create');
     }
 
@@ -34,10 +38,12 @@ class AdminArticleController extends Controller
      */
     public function store(Request $request)
     {
+        // Get Id User
         $user_id = FacadesAuth::user()->id;
+        // Get Table articles
         $data = new Article();
+        // If the file is not null will create data to database article
         if ($request->file('image')) {
-            dd("tes");
             $file = $request->file('image');
             $filename = date('YmdHi') . $file->getClientOriginalName();
             $file->move(public_path('images/articles'), $filename);
@@ -46,7 +52,11 @@ class AdminArticleController extends Controller
             $data['content'] = $request->content;
             $data['image'] = $filename;
         }
+        // Save data or add data
         $data->save();
+        // Alert
+        FacadesAlert::success('Success', 'Successfully added data');
+        // Redirect screen to /dashboard/article
         return redirect('/dashboard/article');
     }
 
@@ -79,11 +89,11 @@ class AdminArticleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
     }
 
     public function report()
     {
+        // Open view article-report
         return view('admin.article-report');
     }
 }

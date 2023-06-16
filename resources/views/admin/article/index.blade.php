@@ -1,4 +1,5 @@
 <x-admin-layout>
+    @include('sweetalert::alert')
     <div class="m-5 p-6 bg-white dark:bg-gray-800 overflow-auto rounded-lg shadow">
         <div class="pb-4 bg-white block sm:flex items-center justify-between dark:bg-gray-800 dark:border-gray-700">
             <div class="w-full mb-1">

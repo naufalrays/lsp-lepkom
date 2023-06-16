@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['title', 'user_id', 'content', 'image']; // fillable digunakan untuk field apa saja yang dapat diisi lewat form
+
 }

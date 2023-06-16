@@ -63,11 +63,11 @@
             <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                 {{ __('Home') }}
             </x-nav-link>
-            <x-nav-link :href="route('article.index')" :active="request()->routeIs('article.*')">
-                {{ __('Articles') }}
+            <x-nav-link :href="route('user.article')" :active="request()->routeIs('user.article')">
+                {{ __('Article') }}
             </x-nav-link>
             @auth
-            <x-nav-link :href="route('dashboard.index')" :active="request()->routeIs('dashboard.*')">
+            <x-nav-link :href="route('article.index')" :active="request()->routeIs('article.*')">
                 {{ __('Dashboard') }}
             </x-nav-link>
             @else

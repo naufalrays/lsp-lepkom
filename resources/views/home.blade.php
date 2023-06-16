@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="max-w-7xl grid lg:grid-cols-2 gap-8 mx-auto items-center sm:px-6 lg:px-8 sm:py-2 lg:py-20 mx-auto">
+    <div class=" grid lg:grid-cols-2 gap-8 mx-auto items-center sm:px-6 lg:px-8 sm:py-2 lg:py-20 mx-auto">
         <div>
             <h1 class="text-amber-500 text-3xl font-extrabold">JeWePe Mading</h1>
             <p class="py-8 dark:text-white">

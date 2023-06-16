@@ -1,4 +1,5 @@
 <x-admin-layout>
+    {{-- Include 'sweetalert::alert' in master layout --}}
     @include('sweetalert::alert')
     <div class="m-5 p-6 bg-white dark:bg-gray-800 overflow-auto rounded-lg shadow">
         <div class="pb-4 bg-white block sm:flex items-center justify-between dark:bg-gray-800 dark:border-gray-700">
@@ -30,20 +31,21 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 dark:divide-gray-700">
+                    {{-- ArrayList to Array --}}
                     @foreach ($dataArticles as $data )
                     <tr class="items-center even:bg-white odd:bg-slate-50 dark:odd:bg-gray-800 dark:even:bg-gray-700 dark:text-white">
                         <td class="max-w-xs p-4 text-sm font-normal text-gray-500 whitespace-nowrap dark:text-gray-400 truncate">
                             <div class="text-base text-sm text-gray-900 dark:text-white overflow-hidden truncate">{{ $data->title }}</div>
-                            <div class="text-sm font-normal text-gray-500 dark:text-gray-400">Penulis</div>
+                            <div class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ $data->user->name }}</div>
                         </td>
-                        {{-- <td class="p-3 text-left text-sm whitespace-nowrap">{{ $data->user_id }}</td> --}}
                         <td class="pt-4 pb-3 pl-3 pr-3 items-center max-w-sm line-clamp-2 text-left text-sm dark:text-gray-400 overflow-ellipsis h-[3.5rem]">{{ $data->content }}</td>
-                        {{-- <td class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">{{ $data->content }}</td> --}}
-                        <td class="p-3 text-left text-sm whitespace-nowrap">{{ $data->image }}</td>
+                        <td class="p-3 text-left text-sm whitespace-nowrap"><img src="{{ url('images/articles/'.$data->image) }}" class="max-h-32 w-48 mb-2 object-cover"></td>
+
                         <td class="flex p-3 text-left text-sm whitespace-nowrap">
                             <button type="button" onclick="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 Edit
                             </button>
+                            {{-- Form for method delete --}}
                             <form action="{{ route('article.destroy', $data->id)  }}" data-confirm="true" onclick="return confirm('Yakin ingin menghapus data?')" method="post">
                                 @csrf
                                 @method("delete")

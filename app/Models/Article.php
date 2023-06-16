@@ -11,4 +11,8 @@ class Article extends Model
 
     protected $fillable = ['title', 'user_id', 'content', 'image']; // fillable digunakan untuk field apa saja yang dapat diisi lewat form
 
+    public function user() // Ini adalah untuk relasi 1 to Many || user adalah nama database User (Harus Nama Database) 
+    {
+        return $this->belongsTo(User::class);
+    }
 }

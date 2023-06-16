@@ -42,4 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function article() // Ini adalah untuk relasi 1 to Many || article adalah nama database Article (Harus Nama Database)
+    {
+        return $this->hasMany(Article::class);
+    }
 }

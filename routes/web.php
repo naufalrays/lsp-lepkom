@@ -33,6 +33,8 @@ Route::controller(UserArticleController::class)->name('user.')->group(function (
     Route::get('/articles/{article}', 'show')->name('show');
 });
 
+Route::post('/dashboard/comment/store', [CommentController::class, 'store_user'])->name('comment.storeUser');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

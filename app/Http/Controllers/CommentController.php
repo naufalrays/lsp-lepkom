@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
+
 
 class CommentController extends Controller
 {
@@ -29,7 +31,6 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -63,6 +64,18 @@ class CommentController extends Controller
     {
         $data = Comment::find($id);
         $data->delete();
+        return back();
+    }
+
+    public function store_user(Request $request)
+    {
+        $data = Comment::create([
+            'article_id' => $request->article_id,
+            'name' => $request->name,
+            'email' => $request->email,
+            'content' => $request->comment,
+        ]);
+        FacadesAlert::success('Success', 'Successfully added data');
         return back();
     }
 }

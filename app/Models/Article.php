@@ -15,4 +15,9 @@ class Article extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function comment() // hasMany berarti Article memiliki banyak Comment
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

@@ -67,7 +67,7 @@
                 {{ __('Articles') }}
             </x-nav-link>
             @auth
-            <x-nav-link :href="route('article.index')" :active="request()->routeIs('article.*')">
+            <x-nav-link :href="route('article.index')" :active="request()->routeIs('article.*') || request()->routeIs('comment.*')">
                 {{ __('Dashboard') }}
             </x-nav-link>
             @else

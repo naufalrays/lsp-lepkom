@@ -52,9 +52,9 @@
                                     <x-sidebar-link :href="route('article.index')" :active="request()->routeIs('article.index')">
                                         <span class="pl-9" sidebar-toggle-item>Articles</span>
                                     </x-sidebar-link>
-                                    <li>
-                                        <a href="#" class="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700">Comments</a>
-                                    </li>
+                                    <x-sidebar-link :href="route('comment.index')" :active="request()->routeIs('comment.*')">
+                                        <span class="pl-9" sidebar-toggle-item>Comment</span>
+                                    </x-sidebar-link>
                                 </ul>
                             </li>
                             <x-sidebar-link :href="route('article.report')" :active="request()->routeIs('article.report')">

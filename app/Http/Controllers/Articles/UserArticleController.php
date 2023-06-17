@@ -13,4 +13,10 @@ class UserArticleController extends Controller
         $dataArticles = Article::all();
         return view('user.article', ['dataArticles' => $dataArticles]);
     }
+
+    public function show(string $id)
+    {
+        $dataArticle = Article::find($id);
+        return view('user.detail', ['data' => $dataArticle]);
+    }
 }

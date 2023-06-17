@@ -27,7 +27,8 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('/dashboard/article/report', [AdminArticleController::class, 'report'])->name('article.report');
 
 
-Route::get('/article', [UserArticleController::class, 'index'])->name('user.article');
+Route::get('/articles', [UserArticleController::class, 'index'])->name('user.article');
+Route::get('/articles/{article}', [UserArticleController::class, 'show'])->name('user.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -1,10 +1,5 @@
 <x-app-layout>
-    <img class="w-full h-auto" src="images/school_header_2.jpg" alt="">
-    <h1 class="px-6 pt-6 text-2xl font-bold dark:text-white">List Articles :</h1>
-    {{-- Article Card --}}
-    <div class="bg-red"></div>
-    @foreach ($dataArticles as $data)
-    <div class="m-6 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="m-8 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div class="flex">
             <div class="mr-4 text-center justify-center rounded-lg bg-green-300 dark:bg-green-500">
                 <div class="divide-y">
@@ -16,7 +11,7 @@
                 </div>
             </div>
             <div class="self-center">
-                <a href="{{ route('article.show', $data->id) }}" class="text-2xl line-clamp-2 font-bold tracking-tight text-gray-900 dark:text-white">{{ $data->title }}</a>
+                <h1 href="#" class="text-2xl line-clamp-2 font-bold tracking-tight text-gray-900 dark:text-white">{{ $data->title }}</h1>
                 <div class="flex items-center">
                     <svg class="h-4 w-4 text-gray-800 mr-2 dark:text-white" viewBox="0 0 24 24" fill="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -25,14 +20,7 @@
                 </div>
             </div>
         </div>
+        <img class="pt-6 h-auto w-full mb-2 object-cover" src="{{ url('images/articles/'.$data->image) }}">
         <p class="pt-3 mb-3 font-normal line-clamp-4 text-gray-700 dark:text-gray-400">{{ $data->content }}</p>
-        <a href="{{ route('user.show', $data->id) }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Read more
-            <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-            </svg>
-        </a>
     </div>
-    @endforeach
-    <br>
 </x-app-layout>

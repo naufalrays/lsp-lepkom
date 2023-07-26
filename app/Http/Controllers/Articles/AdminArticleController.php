@@ -50,6 +50,7 @@ class AdminArticleController extends Controller
             $data['user_id'] = $user_id;
             $data['title'] = $request->title;
             $data['content'] = $request->content;
+            $data['enable_comments'] = $request->enable_comments === "true";
             $data['image'] = $filename;
         }
         // Save data or add data
@@ -73,7 +74,8 @@ class AdminArticleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $articleData = Article::find($id);
+        return view('admin.article.update', compact('articleData'));
     }
 
     /**
@@ -81,7 +83,25 @@ class AdminArticleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = Article::find($id);
+        if ($request->file('image')) {
+            $file = $request->file('image');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
+            $file->move(public_path('images/articles'), $filename);
+            $data['title'] = $request->title;
+            $data['content'] = $request->content;
+            $data['enable_comments'] = $request->enable_comments === "true";
+            $data['image'] = $filename;
+        } elseif ($request->title !== $data->title) {
+            $data['title'] = $request->title;
+        } elseif ($request->content !== $data->content) {
+            $data['content'] = $request->content;
+        } elseif (($request->enable_comments === "true") !== ($data->enable_comments === 1)) {
+            $data['enable_comments'] = $request->enable_comments === "true";
+        }
+        // Save data or add data
+        $data->save();
+        return redirect('/dashboard/article');
     }
 
     /**

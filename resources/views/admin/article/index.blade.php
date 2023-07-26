@@ -26,6 +26,7 @@
                     <tr class="bg-gray-200 dark:bg-gray-700 dark:text-white">
                         <th class="p-3 w-32 text-left text-sm font-semibold tracking-wide">ARTICLE</th>
                         <th class="p-3 w-32 text-left text-sm font-semibold tracking-wide">CONTENT</th>
+                        <th class="p-3 w-24 text-left text-sm font-semibold tracking-wide">ENABLE COMMENTS</th>
                         <th class="p-3 w-24 text-left text-sm font-semibold tracking-wide">IMAGE</th>
                         <th class="p-3 w-24 text-left text-sm font-semibold tracking-wide">ACTION</th>
                     </tr>
@@ -41,9 +42,12 @@
                         <td style="min-width: 15rem;" class="p-5 text-left text-sm dark:text-gray-400 overflow-ellipsis">
                             <h1 class="line-clamp-3">{{ $data->content }}</h1>
                         </td>
+                        <td class="p-5 text-left text-sm dark:text-gray-400 overflow-ellipsis">
+                            <h1 class="line-clamp-3">{{ $data->enable_comments == 1 ? 'true' : 'false' }}</h1>
+                        </td>
                         <td class="p-3 text-left text-sm whitespace-nowrap"><img src="{{ url('images/articles/'.$data->image) }}" class="max-h-32 w-48 mb-2 object-cover"></td>
                         <td class="flex p-3 text-left text-sm whitespace-nowrap">
-                            <button type="button" onclick="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <button type="button" onclick="location.href='{{ route('article.edit', $data->id) }}'" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 Edit
                             </button>
                             {{-- Form for method delete --}}
